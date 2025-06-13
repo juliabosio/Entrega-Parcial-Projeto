@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\EstabelecimentoController;
+use App\Http\Controllers\CarteiraController;
 
 
 Route::get('/', function () {
@@ -31,8 +32,10 @@ Route::middleware(['auth'])->group(function () {
 
 Route::resource('categorias',CategoriaController::class);
 
-
 Route::resource('estabelecimentos',EstabelecimentoController::class);
+
+Route::resource('carteiras',CarteiraController::class);
+
 
 
 require __DIR__.'/auth.php';

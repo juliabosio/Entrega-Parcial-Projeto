@@ -3,29 +3,29 @@
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     </head>
     <div class="container">
-        <h1>Detalhes da estabelecimento
+        <h1>Detalhes da carteira
         
         </h1>
 
         <div class="card">
             <div class="card-section">
                 <h2>Título:</h2>
-                <p>{{ $estabelecimento->titulo }}</p>
+                <p>{{ $carteira->titulo }}</p>
             </div>
 
             <div class="card-section">
-                <h2>estabelecimento:</h2>
-                <p>{{ $estabelecimento->estabelecimento->nome ?? '-' }}</p>
+                <h2>carteira:</h2>
+                <p>{{ $carteira->carteira->nome ?? '-' }}</p>
             </div>
 
             <div class="card-section">
                 <h2>Descrição:</h2>
-                <p>{{ $estabelecimento->descricao ?? '---' }}</p>
+                <p>{{ $carteira->descricao ?? '---' }}</p>
             </div>
 
             <div class="form-actions">
-                <a href="{{ route('estabelecimentos.edit', $estabelecimento) }}" class="btn yellow">Editar</a>
-                <a href="{{ route('estabelecimentos.index') }}" class="btn gray">Voltar</a>
+                <a href="{{ route('carteiras.edit', $carteira) }}" class="btn yellow">Editar</a>
+                <a href="{{ route('carteiras.index') }}" class="btn gray">Voltar</a>
             </div>
         </div>
     </div>

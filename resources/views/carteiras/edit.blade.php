@@ -1,11 +1,16 @@
-<x-layouts.app :title="__('Editar estabelecimento')" :dark-mode="auth()->user()->pref_dark_mode">
+<x-layouts.app :title="__('Editar carteira
+')" :dark-mode="auth()->user()->pref_dark_mode">
     <head>
       <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     </head>
     <div class="container">
-        <h1>Editar estabelecimento</h1>
+        <h1>Editar carteira
+            
+        </h1>
 
-        <form action="{{ route('estabelecimentos.update', $estabelecimento) }}" method="POST">
+        <form action="{{ route('carteira
+        s.update', $carteira
+        ) }}" method="POST">
             @csrf
             @method('PUT')
 
@@ -15,7 +20,8 @@
                     type="text"
                     name="total"
                     id="total"
-                    value="{{ old('total', $estabelecimento->total) }}"
+                    value="{{ old('total', $carteira
+                    ->total) }}"
                     required
                 >
                 @error('total') <span class="error">{{ $message }}</span> @enderror
@@ -27,12 +33,14 @@
                     name="descricao"
                     id="descricao"
                     rows="4"
-                >{{ old('descricao', $estabelecimento->descricao) }}</textarea>
+                >{{ old('descricao', $carteira
+                    ->descricao) }}</textarea>
             </div>
 
             <div class="form-actions">
                 <button type="submit">Atualizar</button>
-                <a href="{{ route('estabelecimentos.show', $estabelecimento) }}" class="btn gray">Cancelar</a>
+                <a href="{{ route('carteira
+                s.show', $carteira) }}" class="btn gray">Cancelar</a>
             </div>
         </form>
     </div>

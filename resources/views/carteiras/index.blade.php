@@ -1,15 +1,15 @@
-<x-layouts.app :title="__('Minhas categorias')">
+<x-layouts.app :title="__('Minhas carteiras')">
     <head>
       <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     </head>
     <div class="container">
         <div class="header">
-            <h1>Minhas categorias</h1>
-            <a href="{{ route('categorias.create') }}" class="btn">+ Nova categoria</a>
+            <h1>Minhas carteiras</h1>
+            <a href="{{ route('carteiras.create') }}" class="btn">+ Nova carteira</a>
         </div>
 
-        @if ($categorias->isEmpty())
-            <p>Nenhuma categoria cadastrada.</p>
+        @if ($carteiras->isEmpty())
+            <p>Nenhuma carteira cadastrada.</p>
         @else
             <table class="table">
                 <thead>
@@ -20,22 +20,22 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($categorias as $categoria)
+                    @foreach($carteiras as $carteira)
                         <tr>
-                            <td>{{ $categoria->nome }}</td>
+                            <td>{{ $carteira->nome }}</td>
                             <td>
-                                {{ Str::limit($categoria->descricao, 80) }}
+                                {{ Str::limit($carteira->descricao, 80) }}
                             </td>
                             <td>
-                                <a href="{{ route('categorias.show', $categoria) }}" class="link blue">Ver</a>
-                                <a href="{{ route('categorias.edit', $categoria) }}" class="link yellow">Editar</a>
-                                <form action="{{ route('categorias.destroy', $categoria) }}" method="POST" class="inline">
+                                <a href="{{ route('carteiras.show', $carteira) }}" class="link blue">Ver</a>
+                                <a href="{{ route('carteiras.edit', $carteira) }}" class="link yellow">Editar</a>
+                                <form action="{{ route('carteiras.destroy', $carteira) }}" method="POST" class="inline">
                                     @csrf
                                     @method('DELETE')
                                     <button
                                         type="button"
                                         class="btn-excluir link red"
-                                        data-nome="{{ $categoria->nome }}">
+                                        data-nome="{{ $carteira->nome }}">
                                         Excluir
                                     </button>
                                 </form>
