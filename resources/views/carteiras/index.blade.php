@@ -15,7 +15,8 @@
                 <thead>
                     <tr>
                         <th>Nome</th>
-                        <th>Descrição</th>
+                        <th>Saldo</th>
+                        <th>Imagem</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
@@ -23,8 +24,13 @@
                     @foreach($carteiras as $carteira)
                         <tr>
                             <td>{{ $carteira->nome }}</td>
+                            <td>R$ {{ number_format($carteira->saldo, 2, ',', '.') }}</td>
                             <td>
-                                {{ Str::limit($carteira->descricao, 80) }}
+                                @if($carteira->imagem)
+                                    <img src="{{ asset('storage/' . $carteira->imagem) }}" alt="Imagem" style="max-width: 100px; border-radius: 8px;">
+                                @else
+                                    Sem imagem
+                                @endif
                             </td>
                             <td>
                                 <a href="{{ route('carteiras.show', $carteira) }}" class="link blue">Ver</a>
@@ -33,9 +39,10 @@
                                     @csrf
                                     @method('DELETE')
                                     <button
-                                        type="button"
+                                        type="submit"
                                         class="btn-excluir link red"
-                                        data-nome="{{ $carteira->nome }}">
+                                        onclick="return confirm('Quer mesmo excluir a carteira {{ $carteira->nome }}?')"
+                                    >
                                         Excluir
                                     </button>
                                 </form>

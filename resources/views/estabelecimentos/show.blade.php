@@ -9,18 +9,13 @@
 
         <div class="card">
             <div class="card-section">
-                <h2>Título:</h2>
-                <p>{{ $estabelecimento->titulo }}</p>
+                <h2>Estabelecimento:</h2>
+                <p>{{ $estabelecimento->nome }}</p>
             </div>
 
             <div class="card-section">
-                <h2>estabelecimento:</h2>
-                <p>{{ $estabelecimento->estabelecimento->nome ?? '-' }}</p>
-            </div>
-
-            <div class="card-section">
-                <h2>Descrição:</h2>
-                <p>{{ $estabelecimento->descricao ?? '---' }}</p>
+                <h2>Cidade:</h2>
+                <p>{{ $estabelecimento->cidade ?? '---' }}</p>
             </div>
 
             <div class="form-actions">

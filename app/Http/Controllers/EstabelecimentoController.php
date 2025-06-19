@@ -52,17 +52,30 @@ class EstabelecimentoController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
-    {
-        //
-    }
+{
+    $estabelecimento = Estabelecimento::findOrFail($id);
+    return view('estabelecimentos.edit', compact('estabelecimento'));
+}
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+/**
+ * Update the specified resource in storage.
+ */
+public function update(Request $request, string $id)
+{
+    $request->validate([
+        'nome' => 'required|string|max:255',
+        'cidade' => 'required|string|max:255',
+    ]);
+
+    $estabelecimento = Estabelecimento::findOrFail($id);
+    $estabelecimento->update([
+        'nome' => $request->input('nome'),
+        'cidade' => $request->input('cidade'),
+    ]);
+
+    return redirect()->route('estabelecimentos.index')
+                     ->with('success', 'Estabelecimento atualizado com sucesso!');
+}
 
     /**
      * Remove the specified resource from storage.

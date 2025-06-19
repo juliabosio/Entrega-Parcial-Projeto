@@ -2,10 +2,21 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Carteira extends Model
 {
-    protected $table = 'carteiras';
-    protected $fillable = ['nome','saldo', 'imagem', 'user_id'];
+    use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'nome',
+        'saldo',
+        'imagem',
+    ];
+    public function categorias() {
+    return $this->hasMany(Categoria::class);
+}
+
 }

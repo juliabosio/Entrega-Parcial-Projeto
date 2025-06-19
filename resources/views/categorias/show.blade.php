@@ -3,29 +3,33 @@
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     </head>
     <div class="container">
-        <h1>Detalhes da estabelecimento
+        <h1>Detalhes da categoria
         
         </h1>
 
-        <div class="card">
-            <div class="card-section">
-                <h2>Título:</h2>
-                <p>{{ $estabelecimento->titulo }}</p>
+    <div class="card">
+        <div class="card-section">
+            <h2>Categoria:</h2>
+            <p>{{ $categoria->nome }}</p>
             </div>
 
-            <div class="card-section">
-                <h2>estabelecimento:</h2>
-                <p>{{ $estabelecimento->estabelecimento->nome ?? '-' }}</p>
-            </div>
+    <div class="card">
+        <div class="card-section">
+        <h2>Descrição:</h2>
+        <p>{{ $categoria->descricao }}</p>
+    </div>
 
-            <div class="card-section">
-                <h2>Descrição:</h2>
-                <p>{{ $estabelecimento->descricao ?? '---' }}</p>
-            </div>
 
+    <div class="card-section">
+        <h2>Total:</h2>
+        <p>{{ $categoria->total ?? '---' }}</p>
+    </div>
+
+
+            
             <div class="form-actions">
-                <a href="{{ route('estabelecimentos.edit', $estabelecimento) }}" class="btn yellow">Editar</a>
-                <a href="{{ route('estabelecimentos.index') }}" class="btn gray">Voltar</a>
+                <a href="{{ route('categorias.edit', $categoria) }}" class="btn yellow">Editar</a>
+                <a href="{{ route('categorias.index') }}" class="btn gray">Voltar</a>
             </div>
         </div>
     </div>

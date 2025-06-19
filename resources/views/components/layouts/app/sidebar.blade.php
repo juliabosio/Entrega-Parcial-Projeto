@@ -2,6 +2,8 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
     <head>
         @include('partials.head')
+
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="min-h-screen bg-white dark:bg-zinc-800">
         <flux:sidebar sticky stashable class="border-e border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
@@ -12,16 +14,18 @@
             </a>
 
             <flux:navlist variant="outline">
-                <flux:navlist.group :heading="__('Platform')" class="grid">
-                    <flux:navlist.item icon="home" :href="route('categorias.index')" :current="request()->routeIs('categorias.index')" wire:navigate>{{ __('Categoria') }}</flux:navlist.item>
-                </flux:navlist.group>
-            </flux:navlist>
+    <flux:navlist.group :heading="__('Platform')" class="grid">
 
-            <flux:navlist variant="outline">
-                <flux:navlist.group :heading="__('Platform')" class="grid">
-                    <flux:navlist.item icon="home" :href="route('estabelecimentos.index')" :current="request()->routeIs('estabelecimentos.index')" wire:navigate>{{ __('Estabelecimento') }}</flux:navlist.item>
-                </flux:navlist.group>
-            </flux:navlist>
+        <flux:navlist.item icon="home" :href="route('carteiras.index')" :current="request()->routeIs('carteiras.index')" wire:navigate>{{ __('Carteira') }}</flux:navlist.item>
+
+        <flux:navlist.item icon="home" :href="route('categorias.index')" :current="request()->routeIs('categorias.index')" wire:navigate>{{ __('Categoria') }}</flux:navlist.item>
+
+        <flux:navlist.item icon="home" :href="route('estabelecimentos.index')" :current="request()->routeIs('estabelecimentos.index')" wire:navigate>{{ __('Estabelecimento') }}</flux:navlist.item>
+
+        <flux:navlist.item icon="home" :href="route('pagamentos.index')" :current="request()->routeIs('pagamentos.index')" wire:navigate>{{ __('Formas de Pagamento') }}</flux:navlist.item>
+
+    </flux:navlist.group>
+</flux:navlist>
 
             <flux:spacer />
 

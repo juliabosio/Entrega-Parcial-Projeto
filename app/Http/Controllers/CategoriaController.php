@@ -7,74 +7,69 @@ use App\Models\Categoria;
 
 class CategoriaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        $categorias = categoria::all();
+        $categorias = Categoria::all();
         return view('categorias.index', compact('categorias'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('categorias.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        $categoria = new Categoria([
-            'nome' => $request->input('nome'),
-            'total' => $request->input('total')
+        $request->validate([
+            'nome' => 'required',
+            'descricao' => 'nullable|string',
+            'total' => 'required|integer',
         ]);
 
-        $categoria->save();
+        Categoria::create([
+            'nome' => $request->input('nome'),
+            'descricao' => $request->input('descricao'),
+            'total' => $request->input('total'),
+        ]);
 
-        return redirect()->route('categorias.index');
+        return redirect()->route('categorias.index')->with('success', 'Categoria criada com sucesso!');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         $categoria = Categoria::findOrFail($id);
-        return view('categorias.show', ['categoria' => $categoria]);
+        return view('categorias.show', compact('categoria'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
-        //
+        $categoria = Categoria::findOrFail($id);
+        return view('categorias.edit', compact('categoria'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nome' => 'required',
+            'descricao' => 'required|string',
+            'total' => 'required|integer',
+        ]);
+
+        $categoria = Categoria::findOrFail($id);
+        $categoria->update([
+            'nome' => $request->input('nome'),
+            'descricao' => $request->input('descricao'),
+            'total' => $request->input('total'),
+        ]);
+
+        return redirect()->route('categorias.index')->with('success', 'Categoria atualizada com sucesso!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
-    
     {
-    $categoria = Categoria::findOrFail($id);
-    $categoria->delete();
+        $categoria = Categoria::findOrFail($id);
+        $categoria->delete();
 
-    return redirect()
-        ->route('categorias.index')
-        ->with('success', 'Categoria excluída com sucesso!');
+        return redirect()->route('categorias.index')->with('success', 'Categoria excluída com sucesso!');
     }
 }

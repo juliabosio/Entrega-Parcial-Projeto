@@ -1,11 +1,11 @@
-<x-layouts.app :title="__('Editar estabelecimento')" :dark-mode="auth()->user()->pref_dark_mode">
+<x-layouts.app :title="__('Editar forma de pagamento')" :dark-mode="auth()->user()->pref_dark_mode">
     <head>
       <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     </head>
     <div class="container">
-        <h1>Editar estabelecimento</h1>
+        <h1>Editar forma de pagamento</h1>
 
-        <form action="{{ route('estabelecimentos.update', $estabelecimento) }}" method="POST">
+        <form action="{{ route('pagamentos.update', $pagamento) }}" method="POST">
             @csrf
             @method('PUT')
 
@@ -15,29 +15,26 @@
                     type="text"
                     name="nome"
                     id="nome"
-                    value="{{ old('nome', $estabelecimento->nome) }}"
+                    value="{{ old('nome', $pagamento->nome) }}"
                     required
                 >
                 @error('nome') <span class="error">{{ $message }}</span> @enderror
             </div>
 
             <div class="form-group">
-                <label for="cidade">Cidade</label>
+                <label for="descricao">Descrição</label>
                 <input
                     type="text"
-                    name="cidade"
-                    id="cidade"
-                    value="{{ old('cidade', $estabelecimento->cidade) }}"
+                    name="descricao"
+                    id="descricao"
+                    value="{{ old('descricao', $pagamento->descricao) }}"
                     required
                 >
-                @error('cidade') <span class="error">{{ $message }}</span> @enderror
+                @error('descricao') <span class="error">{{ $message }}</span> @enderror
             </div>
-
-          
-
             <div class="form-actions">
                 <button type="submit">Atualizar</button>
-                <a href="{{ route('estabelecimentos.show', $estabelecimento) }}" class="btn gray">Cancelar</a>
+                <a href="{{ route('pagamentos.show', $pagamento) }}" class="btn gray">Cancelar</a>
             </div>
         </form>
     </div>
